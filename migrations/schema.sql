@@ -9,12 +9,19 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS workouts (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
+    name VARCHAR(30),
     division VARCHAR(20),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE packages (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50)
+);
+
 CREATE TABLE IF NOT EXISTS exercices (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
     muscle VARCHAR(30),
     image TEXT,
     description VARCHAR(300)

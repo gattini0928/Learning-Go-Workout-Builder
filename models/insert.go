@@ -3,7 +3,6 @@ package models
 import "github.com/gattini0928/Build-your-workout-with-Go/db"
 
 func InsertUser(user User) (int, error) {
-
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return 0 , err
@@ -33,8 +32,8 @@ func InsertWorkout(workout Workout) (int, error) {
 
 	var id int
 
-	query := `INSERT INTO workouts (user_id, division) VALUES ($1, $2) RETURNING id`
-	err = conn.QueryRow(query, workout.UserID, workout.Division).Scan(&id)
+	query := `INSERT INTO workouts (user_id, name, division) VALUES ($1, $2, $3) RETURNING id`
+	err = conn.QueryRow(query, workout.UserID, workout.Name, workout.Division).Scan(&id)
 
 	if err != nil {
 		return 0, err
