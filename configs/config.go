@@ -1,6 +1,8 @@
 package configs
 
-import "github.com/spf13/viper"
+import (
+	"strings"
+	"github.com/spf13/viper")
 
 var cfg *config
 
@@ -28,6 +30,8 @@ func init() {
 }
 
 func Load() error {
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	viper.AutomaticEnv()
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")

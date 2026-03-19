@@ -2,7 +2,10 @@ module github.com/gattini0928/Build-your-workout-with-Go
 
 go 1.25.6
 
-require github.com/spf13/viper v1.21.0
+require (
+	github.com/lib/pq v1.12.0
+	github.com/spf13/viper v1.21.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
