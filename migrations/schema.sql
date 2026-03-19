@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(150),
+    password VARCHAR(100),
+    age INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS workouts (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    division VARCHAR(20),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS exercices (
+    id SERIAL PRIMARY KEY,
+    muscle VARCHAR(30),
+    image TEXT,
+    description VARCHAR(300)
+);
+
+CREATE TABLE IF NOT EXISTS workout_exercises (
+    workout_id INTEGER,
+    exercise_id INTEGER,
+    FOREIGN KEY (workout_id) REFERENCES workouts(id),
+    FOREIGN KEY (exercise_id) REFERENCES exercices(id)
+);
+
