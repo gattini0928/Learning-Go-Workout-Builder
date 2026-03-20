@@ -53,35 +53,35 @@ func GetWorkoutByID(workout_id int) (Workout, error) {
 	return workout, nil
 }
 
-func GetAllExercices() ([]Exercice, error) {
+func GetAllExercices() ([]Exercise, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return nil, err
 	}
 	defer conn.Close()
 
-	rows, err := conn.Query(`SELECT id, name, muscle, image, description, categorie FROM exercices`)
+	rows, err := conn.Query(`SELECT id, name, muscle, image, description, categorie FROM exercises`)
 	if err != nil {
 		return nil, err
 	}
 
-	var exercices []Exercice
+	var exercices []Exercise
 
 	for rows.Next() {
-		var exercice Exercice		
-		err = rows.Scan(&exercice.ID, &exercice.Name, &exercice.Muscle, &exercice.Image, &exercice.Description,&exercice.Categorie)
+		var exercise Exercise		
+		err = rows.Scan(&exercise.ID, &exercise.Name, &exercise.Muscle, &exercise.Image, &exercise.Description,&exercise.Categorie)
 
 		if err != nil {
 			return nil, err
 		}
 
-		exercices = append(exercices, exercice)
+		exercices = append(exercices, exercise)
 	}
 
 	return exercices, nil
 }
 
-func GetExercicesByCategory(category string) ([]Exercice, error) {
+func GetExercicesByCategory(category string) ([]Exercise, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return nil, err
@@ -90,7 +90,7 @@ func GetExercicesByCategory(category string) ([]Exercice, error) {
 
 	rows, err := conn.Query(`
 		SELECT id, name, muscle, image, description, categorie 
-		FROM exercices 
+		FROM exercises 
 		WHERE categorie = $1
 		`, category)
 
@@ -98,17 +98,17 @@ func GetExercicesByCategory(category string) ([]Exercice, error) {
 		return nil, err
 	}
 
-	var exercices []Exercice
+	var exercices []Exercise
 
 	for rows.Next(){
-		var exercice Exercice
-		err = rows.Scan(&exercice.ID, &exercice.Name, &exercice.Muscle, &exercice.Image, &exercice.Description, &exercice.Categorie)
+		var exercise Exercise
+		err = rows.Scan(&exercise.ID, &exercise.Name, &exercise.Muscle, &exercise.Image, &exercise.Description, &exercise.Categorie)
 		
 		if err != nil {
 			return nil, err
 		}
 
-		exercices = append(exercices, exercice)
+		exercices = append(exercices, exercise)
 	}
 
 	return exercices, nil
@@ -124,7 +124,7 @@ func GetWorkoutExercises(workoutID int) ([]WorkoutExerciseDetail, error) {
 	rows, err := conn.Query(`
 		SELECT e.id, e.name, e.muscle, we.reps, we.sets
 		FROM workout_exercises we
-		JOIN exercices e ON e.id = we.exercise_id
+		JOIN exercises e ON e.id = we.exercise_id
 		WHERE we.workout_id = $1
 	`, workoutID)
 	if err != nil {

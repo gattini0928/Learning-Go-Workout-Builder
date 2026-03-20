@@ -42,7 +42,7 @@ func InsertWorkout(workout Workout) (int, error) {
 	return id, nil
 }
 
-func InsertExercice(exercice Exercice) (int, error) {
+func InsertExercice(exercise Exercise) (int, error) {
 
 	conn, err := db.OpenConnection()
 	if err != nil {
@@ -54,7 +54,7 @@ func InsertExercice(exercice Exercice) (int, error) {
 	var id int
 
 	query := `INSERT INTO exercices (muscle, image, description, categorie) VALUES ($1, $2, $3, $4) RETURNING id`
-	err = conn.QueryRow(query, exercice.Muscle, exercice.Image, exercice.Description, exercice.Categorie).Scan(&id)
+	err = conn.QueryRow(query, exercise.Muscle, exercise.Image, exercise.Description, exercise.Categorie).Scan(&id)
 
 	if err != nil {
 		return 0, err

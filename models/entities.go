@@ -14,7 +14,7 @@ type Workout struct {
 	UserID int
 	Name string
 	Division string
-	Exercices []Exercice
+	Exercises []Exercise
 }
 
 type Package struct {
@@ -22,7 +22,7 @@ type Package struct {
 	Name string
 }
 
-type Exercice struct {
+type Exercise struct {
 	ID int
 	Name string
 	Muscle string

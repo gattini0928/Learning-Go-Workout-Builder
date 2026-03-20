@@ -17,9 +17,10 @@ CREATE TABLE IF NOT EXISTS workouts (
 CREATE TABLE packages (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50)
+
 );
 
-CREATE TABLE IF NOT EXISTS exercices (
+CREATE TABLE IF NOT EXISTS exercises (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50),
     muscle VARCHAR(30),
@@ -34,6 +35,6 @@ CREATE TABLE IF NOT EXISTS workout_exercises (
     reps Integer,
     sets Integer,
     FOREIGN KEY (workout_id) REFERENCES workouts(id),
-    FOREIGN KEY (exercise_id) REFERENCES exercices(id)
+    FOREIGN KEY (exercise_id) REFERENCES exercises(id)
 );
 
