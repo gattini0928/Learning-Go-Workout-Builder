@@ -24,12 +24,15 @@ CREATE TABLE IF NOT EXISTS exercices (
     name VARCHAR(50),
     muscle VARCHAR(30),
     image TEXT,
-    description VARCHAR(300)
+    description VARCHAR(300),
+    categorie VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS workout_exercises (
     workout_id INTEGER,
     exercise_id INTEGER,
+    reps Integer,
+    sets Integer,
     FOREIGN KEY (workout_id) REFERENCES workouts(id),
     FOREIGN KEY (exercise_id) REFERENCES exercices(id)
 );

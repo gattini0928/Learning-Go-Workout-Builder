@@ -22,12 +22,28 @@ type Package struct {
 	Name string
 }
 
-// Admin adiciona. saudades django-admin
 type Exercice struct {
 	ID int
 	Name string
 	Muscle string
 	Image string
 	Description string
+	Categorie string
 }
+
+type WorkoutExercise struct {
+	WorkoutID int
+	ExerciseID int
+	Reps int
+	Sets int
+}
+
+type WorkoutExerciseDetail struct {
+	ExerciseID int
+	Name string
+	Muscle string
+	Reps int
+	Sets int
+}
+
 

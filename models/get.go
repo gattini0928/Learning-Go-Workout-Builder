@@ -52,3 +52,98 @@ func GetWorkoutByID(workout_id int) (Workout, error) {
 
 	return workout, nil
 }
+
+func GetAllExercices() ([]Exercice, error) {
+	conn, err := db.OpenConnection()
+	if err != nil {
+		return nil, err
+	}
+	defer conn.Close()
+
+	rows, err := conn.Query(`SELECT id, name, muscle, image, description, categorie FROM exercices`)
+	if err != nil {
+		return nil, err
+	}
+
+	var exercices []Exercice
+
+	for rows.Next() {
+		var exercice Exercice		
+		err = rows.Scan(&exercice.ID, &exercice.Name, &exercice.Muscle, &exercice.Image, &exercice.Description,&exercice.Categorie)
+
+		if err != nil {
+			return nil, err
+		}
+
+		exercices = append(exercices, exercice)
+	}
+
+	return exercices, nil
+}
+
+func GetExercicesByCategory(category string) ([]Exercice, error) {
+	conn, err := db.OpenConnection()
+	if err != nil {
+		return nil, err
+	}
+	defer conn.Close()
+
+	rows, err := conn.Query(`
+		SELECT id, name, muscle, image, description, categorie 
+		FROM exercices 
+		WHERE categorie = $1
+		`, category)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var exercices []Exercice
+
+	for rows.Next(){
+		var exercice Exercice
+		err = rows.Scan(&exercice.ID, &exercice.Name, &exercice.Muscle, &exercice.Image, &exercice.Description, &exercice.Categorie)
+		
+		if err != nil {
+			return nil, err
+		}
+
+		exercices = append(exercices, exercice)
+	}
+
+	return exercices, nil
+}
+
+func GetWorkoutExercises(workoutID int) ([]WorkoutExerciseDetail, error) {
+	conn, err := db.OpenConnection()
+	if err != nil {
+		return nil, err
+	}
+	defer conn.Close()
+
+	rows, err := conn.Query(`
+		SELECT e.id, e.name, e.muscle, we.reps, we.sets
+		FROM workout_exercises we
+		JOIN exercices e ON e.id = we.exercise_id
+		WHERE we.workout_id = $1
+	`, workoutID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var result []WorkoutExerciseDetail
+
+	for rows.Next() {
+		var e WorkoutExerciseDetail
+
+		err := rows.Scan(&e.ExerciseID, &e.Name, &e.Muscle, &e.Reps, &e.Sets)
+		if err != nil {
+			return nil, err
+		}
+
+		result = append(result, e)
+	}
+
+	return result, nil
+}
