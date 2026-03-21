@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Workouts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css"></head>
+<body>
+    <header>
+        <nav>
+            <h1>Awesome Workouts</h1>
+            <div class="nav-links">
+                <a href="" class="nav-link">Treinos Completos</a>
+                <a href="" class="nav-link">Montar Treino Completo</a>
+                <a href="" class="nav-link">Exercicios</a>
+            </div>
+        </nav>
+    </header>
+    <div class="img-and-name">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="file-upload">
+                    <img src="/static/uploads/profile.jpeg" 
+                        onerror="this.src='/static/images/default.jpg'" 
+                        class="profile-img">
+                </label>            
+            <input type="file" id="file-upload" name="image_file" accept="image/*" hidden>
+            <button type="submit" hidden id="submit-btn"></button>
+        </form>
+        <span class="name">Gabriel Gattini</span>
+    </div>
+    <section class="workouts">
+        <h2>Seus Treinos</h2>
+        <div class="workouts-grid">
+            <div class="card-name-img">
+                <span>Full Body</span>
+                <img src="/static/images/full-body.jpeg" class="workout-photo" alt="Full Body">
+            </div>
+            <div class="card-name-img">
+                <span>Full Body</span>
+                <img src="/static/images/full body.jpeg" class="workout-photo" alt="Full Body">
+            </div>
+            <div class="card-name-img">
+                <span>Full Body</span>
+                <img src="/static/images/full body.jpeg" class="workout-photo" alt="Full Body">
+            </div>
+        </div>
+    </section>
+    <script>
+        const input = document.getElementById("file-upload");
+        const preview = document.getElementById("profile-preview");
+        const form = input.closest("form");
+
+        input.addEventListener("change", () => {
+            const file = input.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                form.submit();
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</body>
+</html>
