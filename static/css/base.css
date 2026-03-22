@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.4;
+}
+
+.del-btn{
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    background-color: brown;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.del-btn {
+    background-color: white;
+    border: 1px solid brown;
+    color: brown;
+}

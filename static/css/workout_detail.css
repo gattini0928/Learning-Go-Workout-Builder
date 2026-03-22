@@ -1,0 +1,53 @@
+.workouts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.back-home {
+    font-size: 2rem;
+    margin: 0 auto;
+    font-weight: 600;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.workout-name {
+    font-size: 2rem;
+    margin: 0 auto;
+    font-weight: 600;
+    margin: 0 auto;
+}
+
+.exercises {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.name {
+    font-size: 1.9rem;
+}
+
+.exercise-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid brown;
+    padding: 1rem;
+}

@@ -6,16 +6,18 @@
     <title>Awesome Workouts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/base.css"></head>
     <link rel="stylesheet" href="/static/css/style.css"></head>
 <body>
     <header>
         <nav>
             <h1>Awesome Workouts</h1>
             <div class="nav-links">
-                <a href="" class="nav-link">Treinos Completos</a>
-                <a href="" class="nav-link">Montar Treino Completo</a>
-                <a href="" class="nav-link">Exercicios</a>
+                <a href="/packages" class="nav-link">Treinos Completos</a>
+                <a href="/build-workouts" class="nav-link">Montar Treino Completo</a>
+                <a href="/exercises" class="nav-link">Exercicios</a>
             </div>
         </nav>
     </header>
@@ -37,14 +39,20 @@
             <div class="card-name-img">
                 <span>Full Body</span>
                 <img src="/static/images/full-body.jpeg" class="workout-photo" alt="Full Body">
+                <a href="/workout-detail" class="workout-detail-link">Ver Detalhes</a>
+                <a href="" class="del-btn">Deletar Treino</a>
             </div>
             <div class="card-name-img">
                 <span>Full Body</span>
-                <img src="/static/images/full body.jpeg" class="workout-photo" alt="Full Body">
+                <img src="/static/images/full-body.jpeg" class="workout-photo" alt="Full Body">
+                <a href="/workout-detail" class="workout-detail-link">Ver Detalhes</a>
+                <a href="" class="del-btn">Deletar Treino</a>
             </div>
             <div class="card-name-img">
                 <span>Full Body</span>
-                <img src="/static/images/full body.jpeg" class="workout-photo" alt="Full Body">
+                <img src="/static/images/full-body.jpeg" class="workout-photo" alt="Full Body">
+                <a href="/workout-detail" class="workout-detail-link">Ver Detalhes</a>
+                <a href="" class="del-btn">Deletar Treino</a>
             </div>
         </div>
     </section>
@@ -61,6 +69,5 @@
             }
         });
     </script>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </body>
 </html>

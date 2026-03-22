@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS workouts (
 CREATE TABLE packages (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50)
-
 );
 
 CREATE TABLE IF NOT EXISTS exercises (
