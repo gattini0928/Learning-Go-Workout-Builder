@@ -13,6 +13,8 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	mux.HandleFunc("/", handlerCreateInterface)
+	mux.HandleFunc("/login", handlerLogin)
+	mux.HandleFunc("/signup", handlerSignup)
 	mux.HandleFunc("/workout-detail", handlerWorkoutDetail)
 	mux.HandleFunc("/exercises", handlerExercises)
 	mux.HandleFunc("/packages", handlerWorkoutsPackages)
@@ -43,5 +45,15 @@ func handlerBuildWorkouts(w http.ResponseWriter, r *http.Request) {
 
 func handlerExercises(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/exercises.html"))
+	tmpl.Execute(w, nil)
+}
+
+func handlerLogin(w http.ResponseWriter, r *http.Request){
+	tmpl := template.Must(template.ParseFiles("templates/login.html"))
+	tmpl.Execute(w, nil)
+}
+
+func handlerSignup(w http.ResponseWriter, r *http.Request){
+	tmpl := template.Must(template.ParseFiles("templates/signup.html"))
 	tmpl.Execute(w, nil)
 }

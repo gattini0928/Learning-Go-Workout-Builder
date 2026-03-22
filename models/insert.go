@@ -11,8 +11,8 @@ func InsertUser(user User) (int, error) {
 	defer conn.Close()
 
 	var id int
-	query := `INSERT INTO users (name, email, password, age) VALUES ($1, $2, $3, $4) RETURNING id`
-	err = conn.QueryRow(query, user.Name, user.Email, user.Password, user.Age).Scan(&id)
+	query := `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id`
+	err = conn.QueryRow(query, user.Name, user.Email, user.Password).Scan(&id)
 
 	if err != nil {
 		return 0, err

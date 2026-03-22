@@ -1,0 +1,33 @@
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+.labels-and-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.form-btn {
+    font-weight: 600;
+    width: max-content;
+    color: white;
+    background-color: rgb(35, 94, 189);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}

@@ -2,8 +2,7 @@ CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(150),
-    password VARCHAR(100),
-    age INTEGER
+    password VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS workouts (
