@@ -1,43 +1,18 @@
-.workout-detail {
+.workout-builder {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 2rem;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.workouts {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
     gap: 2rem;
     padding: 2rem;
-    margin: 0 auto;
-}
-
-.back-home {
-    font-size: 2rem;
-    margin: 0 auto;
-    font-weight: 600;
-    margin: 0 auto;
-    align-self: center;
-}
-
-.workout-name {
-    font-size: 2rem;
-    margin: 0 auto;
-    font-weight: 600;
     margin: 0 auto;
 }
 
 .exercises {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 2rem;
+    grid-template-columns: repeat(3,1fr);
     gap: 2rem;
+    padding: 2rem;
 }
 
 .card {
@@ -48,8 +23,9 @@
     flex-direction: column;
 }
 
-.name {
+.exercise-name {
     font-size: 1.9rem;
+    font-weight: 600;
 }
 
 .exercise-img {
@@ -60,4 +36,23 @@
     object-position: center;
     border: 1px solid brown;
     padding: 1rem;
+}
+
+.add-exercise {
+    text-decoration: none;
+    background-color: brown;
+    font-weight: 600;
+    width: max-content;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: solid 1px transparent;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+}
+
+.add-exercise:hover {
+    background-color: rgb(255, 255, 255);
+    color: brown;
+    border: 1px solid brown;
 }

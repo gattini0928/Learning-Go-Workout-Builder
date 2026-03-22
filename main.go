@@ -16,8 +16,8 @@ func main() {
 	mux.HandleFunc("/workout-detail", handlerWorkoutDetail)
 	mux.HandleFunc("/exercises", handlerExercises)
 	mux.HandleFunc("/packages", handlerWorkoutsPackages)
-	mux.HandleFunc("/build-workouts", handlerCreateInterface)
-	
+	mux.HandleFunc("/build-workouts", handlerBuildWorkouts)
+
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
  
