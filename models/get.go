@@ -2,6 +2,25 @@ package models
 
 import "github.com/gattini0928/Build-your-workout-with-Go/db"
 
+func GetUserByEmail(email string) (User, error) {
+	conn, err := db.OpenConnection()
+	if err != nil {
+		return User{}, err
+	}
+
+	defer conn.Close()
+
+	var user User
+
+	query := conn.QueryRow(`SELECT id, email, password FROM users WHERE email = $1`, email)
+	err = query.Scan(&user.ID, &user.Email, &user.Password)
+	if err != nil {
+		return User{}, err
+	}
+
+	return user, err
+}
+
 func GetAllWorkouts(user_id int) ([]Workout, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
