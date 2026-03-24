@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"html/template"
+	"github.com/gattini0928/Learning-Go-Workout-Builder/models"
 )
 
 func main() { 
@@ -20,7 +21,13 @@ func main() {
 	mux.HandleFunc("/packages", handlerWorkoutsPackages)
 	mux.HandleFunc("/build-workouts", handlerBuildWorkouts)
 
+	mux.HandleFunc("POST /login", Login)
+
 	log.Fatal(http.ListenAndServe(":8080", mux))
+}
+
+func Login(w http.ResponseWriter, r *http.Request) {
+	
 }
  
 func handlerCreateInterface(w http.ResponseWriter, r *http.Request) {

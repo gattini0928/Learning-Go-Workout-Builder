@@ -1,4 +1,4 @@
-module github.com/gattini0928/Build-your-workout-with-Go
+module github.com/gattini0928/Learning-Go-Workout-Builder
 
 go 1.25.6
 

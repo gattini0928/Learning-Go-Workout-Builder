@@ -1,6 +1,6 @@
 package models
 
-import "github.com/gattini0928/Build-your-workout-with-Go/db"
+import "github.com/gattini0928/Learning-Go-Workout-Builder/db"
 
 func UpdateWorkoutExerciceRepsAndSets(workoutID int, exerciseID int, reps int, sets int) (int64, error) {
 	conn, err := db.OpenConnection()
