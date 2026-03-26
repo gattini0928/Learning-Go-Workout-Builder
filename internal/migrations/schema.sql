@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100),
-    email VARCHAR(150),
-    password VARCHAR(100)
+    email VARCHAR(150) UNIQUE,
+    password TEXT
 );
 
 CREATE TABLE IF NOT EXISTS workouts (

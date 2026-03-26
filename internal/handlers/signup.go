@@ -8,11 +8,6 @@ import (
 	"github.com/gattini0928/Learning-Go-Workout-Builder/internal/validators"
 )
 
-type Message struct {
-    Content string `json:"content"`
-    Status  int `json:"status"`
-}
-
 func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	var response Message
@@ -68,7 +63,7 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user.Password = passwordHashed
-
+	
 	_, err = models.InsertUser(user)
 	if err != nil {
 		log.Println(err)
@@ -84,5 +79,7 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 	response.Status = 201
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(response)
+
+	log.Println(user)
 
 }
