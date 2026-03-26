@@ -1,6 +1,6 @@
 package models
 
-import "github.com/gattini0928/Learning-Go-Workout-Builder/db"
+import "github.com/gattini0928/Learning-Go-Workout-Builder/internal/db"
 
 func InsertUser(user User) (int, error) {
 	conn, err := db.OpenConnection()

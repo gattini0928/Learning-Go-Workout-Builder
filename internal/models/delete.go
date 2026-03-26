@@ -1,6 +1,6 @@
 package models
 
-import "github.com/gattini0928/Learning-Go-Workout-Builder/db"
+import "github.com/gattini0928/Learning-Go-Workout-Builder/internal/db"
 
 func DeleteWorkout(workout_id int, user_id int) (int64, error) {
 	conn, err := db.OpenConnection()

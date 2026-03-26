@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"github.com/gattini0928/Learning-Go-Workout-Builder/configs"
+	"github.com/gattini0928/Learning-Go-Workout-Builder/internal/configs"
 	_ "github.com/lib/pq"
 )
 
