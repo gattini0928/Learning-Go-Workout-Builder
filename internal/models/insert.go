@@ -53,8 +53,8 @@ func InsertExercice(exercise Exercise) (int, error) {
 
 	var id int
 
-	query := `INSERT INTO exercices (muscle, image, description, categorie) VALUES ($1, $2, $3, $4) RETURNING id`
-	err = conn.QueryRow(query, exercise.Muscle, exercise.Image, exercise.Description, exercise.Categorie).Scan(&id)
+	query := `INSERT INTO exercises (name,muscle, image, description, categorie) VALUES ($1, $2, $3, $4, $5) RETURNING id`
+	err = conn.QueryRow(query, exercise.Name, exercise.Muscle, exercise.Image, exercise.Description, exercise.Categorie).Scan(&id)
 
 	if err != nil {
 		return 0, err
