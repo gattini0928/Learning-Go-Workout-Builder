@@ -9,11 +9,11 @@ type User struct {
 }
 
 type Workout struct {
-	ID int
-	UserID int
-	Name string
-	Division string
-	Exercises []Exercise
+	ID int `json:"id"`
+	UserID int `json:"user_id"`
+	Name string `json:"name"`
+	Division string `json:"division"`
+	Exercises []WorkoutExercise `json:"exercises"`
 }
 
 type Package struct {
@@ -31,10 +31,10 @@ type Exercise struct {
 }
 
 type WorkoutExercise struct {
-	WorkoutID int
-	ExerciseID int
-	Reps int
-	Sets int
+	WorkoutID int `json:"workout_id"`
+	ExerciseID int `json:"exercise_id"`
+	Reps int `json:"reps"`
+	Sets int `json:"sets"`
 }
 
 type WorkoutExerciseDetail struct {

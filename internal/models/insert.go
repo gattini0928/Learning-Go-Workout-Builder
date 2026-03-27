@@ -27,14 +27,35 @@ func InsertWorkout(workout Workout) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-
 	defer conn.Close()
+
+	tx, err := conn.Begin()
+	if err != nil {
+		return 0, err
+	}
 
 	var id int
 
 	query := `INSERT INTO workouts (user_id, name, division) VALUES ($1, $2, $3) RETURNING id`
-	err = conn.QueryRow(query, workout.UserID, workout.Name, workout.Division).Scan(&id)
+	err = tx.QueryRow(query, workout.UserID, workout.Name, workout.Division).Scan(&id)
+	if err != nil {
+		tx.Rollback()
+		return 0, err
+	}
 
+	for _, ex := range workout.Exercises {
+		_, err := tx.Exec(`
+			INSERT INTO workout_exercises (workout_id, exercise_id, reps, sets)
+			VALUES ($1, $2, $3, $4)
+		`, id, ex.ExerciseID, ex.Reps, ex.Sets)
+
+		if err != nil {
+			tx.Rollback()
+			return 0, err
+		}
+	}
+
+	err = tx.Commit()
 	if err != nil {
 		return 0, err
 	}
