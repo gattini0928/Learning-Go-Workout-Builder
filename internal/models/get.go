@@ -28,7 +28,7 @@ func GetAllWorkouts(user_id int) ([]Workout, error) {
 	}
 	defer conn.Close()
 
-	rows, err := conn.Query(`SELECT id, user_id, division FROM workouts WHERE user_id = $1`, user_id)
+	rows, err := conn.Query(`SELECT id, user_id, name, division FROM workouts WHERE user_id = $1`, user_id)
 	if err != nil {
 		return nil, err
 	}

@@ -11,5 +11,6 @@ func SetupRoutes() *http.ServeMux{
 	mux.HandleFunc("POST /login", handlers.HandleLogin)
 	mux.HandleFunc("POST /exercises", handlers.HandleExercise)
 	mux.HandleFunc("POST /workouts", handlers.HandleWorkouts)
+	mux.HandleFunc("GET /users/{id}/workouts", handlers.HandleShowWorkouts)
 	return mux
 }
