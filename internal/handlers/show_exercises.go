@@ -7,10 +7,20 @@ import (
 	"github.com/gattini0928/Learning-Go-Workout-Builder/internal/models"
 )
 
-func HandleShowExercises(w http.ResponseWriter,r *http.Request) {
+func HandleShowExercises(w http.ResponseWriter, r *http.Request) {
 	var response Message
 
-	exercises, err := models.GetAllExercices()
+	categorie := r.URL.Query().Get("categorie")
+
+	var exercises []models.Exercise
+	var err error
+
+	if categorie != "" {
+		exercises, err = models.GetExercicesByCategory(categorie)
+	} else {
+		exercises, err = models.GetAllExercices()
+	}
+
 	if err != nil {
 		log.Println(err)
 		response.Content = err.Error()
