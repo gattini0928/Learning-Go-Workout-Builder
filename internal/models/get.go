@@ -50,24 +50,32 @@ func GetAllWorkouts(user_id int) ([]Workout, error) {
 	return workouts, nil
 }
 
-func GetWorkoutByID(workout_id int) (Workout, error) {
+func GetWorkoutByID(workout_id int) (WorkoutResponse, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
-		return Workout{}, err
+		return WorkoutResponse{}, err
 	}
 	defer conn.Close()
 
-	var workout Workout
+	var workout WorkoutResponse
 
-	row := conn.QueryRow(
-		`SELECT id, user_id, name, division FROM workouts WHERE id = $1`,
-		workout_id,
-	)
+	row := conn.QueryRow(`
+		SELECT id, user_id, name, division
+		FROM workouts
+		WHERE id = $1
+	`, workout_id)
 
 	err = row.Scan(&workout.ID, &workout.UserID, &workout.Name, &workout.Division)
 	if err != nil {
-		return Workout{}, err
+		return WorkoutResponse{}, err
 	}
+
+	exercises, err := GetWorkoutExercises(workout_id)
+	if err != nil {
+		return WorkoutResponse{}, err
+	}
+
+	workout.Exercises = exercises
 
 	return workout, nil
 }

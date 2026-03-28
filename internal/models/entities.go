@@ -45,4 +45,12 @@ type WorkoutExerciseDetail struct {
 	Sets int
 }
 
+type WorkoutResponse struct {
+	ID int `json:"id"`
+	UserID int `json:"user_id"`
+	Name string `json:"name"`
+	Division string `json:"division"`
+	Exercises []WorkoutExerciseDetail `json:"exercises"`
+}
+
 
