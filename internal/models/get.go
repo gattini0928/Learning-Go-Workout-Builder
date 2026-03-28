@@ -174,3 +174,32 @@ func GetWorkoutExercises(workoutID int) ([]WorkoutExerciseDetail, error) {
 
 	return result, nil
 }
+
+func GetWorkoutExercise(workoutID int, exerciseID int) (WorkoutExerciseDetail, error) {
+	conn, err := db.OpenConnection()
+	if err != nil {
+		return WorkoutExerciseDetail{}, err
+	}
+	defer conn.Close()
+
+	var e WorkoutExerciseDetail
+
+	err = conn.QueryRow(`
+		SELECT e.id, e.name, e.muscle, we.reps, we.sets
+		FROM workout_exercises we
+		JOIN exercises e ON e.id = we.exercise_id
+		WHERE we.workout_id = $1 AND we.exercise_id = $2
+	`, workoutID, exerciseID).Scan(
+		&e.ExerciseID,
+		&e.Name,
+		&e.Muscle,
+		&e.Reps,
+		&e.Sets,
+	)
+
+	if err != nil {
+		return WorkoutExerciseDetail{}, err
+	}
+
+	return e, nil
+}
