@@ -78,9 +78,24 @@ func DeleteExerciseFromWorkout(workout_id int, exercise_id int) (int64, error) {
 	}
 	defer conn.Close()
 
-	res, err := conn.Exec(`DELETE FROM workout_exercises WHERE workout_id = $1 and exercise_id = $2`, workout_id, exercise_id)
+	tx, err := conn.Begin()
 	if err != nil {
 		return 0, err
 	}
+	defer tx.Rollback()
+
+	res, err := tx.Exec(
+		`DELETE FROM workout_exercises WHERE workout_id = $1 AND exercise_id = $2`,
+		workout_id, exercise_id,
+	)
+	if err != nil {
+		return 0, err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return 0, err
+	}
+
 	return res.RowsAffected()
 }
