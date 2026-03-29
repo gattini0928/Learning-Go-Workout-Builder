@@ -69,11 +69,19 @@ func HandleUpdateRepsAndSets(w http.ResponseWriter, r *http.Request) {
 		sets = *payload.Sets
 	}
 
-	_, err = models.UpdateWorkoutExerciceRepsAndSets(workoutID, exerciseID, reps, sets)
+	rows, err := models.UpdateWorkoutExerciceRepsAndSets(workoutID, exerciseID, reps, sets)
 	if err != nil {
 		response.Content = err.Error()
 		response.Status = 500
 		w.WriteHeader(500)
+		json.NewEncoder(w).Encode(response)
+		return
+	}
+
+	if rows == 0 {
+		response.Content = "Exercício não encontrado"
+		response.Status = 404
+		w.WriteHeader(404)
 		json.NewEncoder(w).Encode(response)
 		return
 	}

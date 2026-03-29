@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS workout_exercises (
     exercise_id INTEGER,
     reps Integer,
     sets Integer,
-    FOREIGN KEY (workout_id) REFERENCES workouts(id),
+    FOREIGN KEY (workout_id) REFERENCES workouts(id) ON DELETE CASCADE,
     FOREIGN KEY (exercise_id) REFERENCES exercises(id)
 );
 
