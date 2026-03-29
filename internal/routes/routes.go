@@ -16,6 +16,7 @@ func SetupRoutes() *http.ServeMux{
 	mux.HandleFunc("GET /users/{id}/workouts", handlers.HandleShowWorkouts)
 	mux.HandleFunc("GET /workouts/{workout_id}", handlers.HandleShowWorkoutById)
 	mux.HandleFunc("DELETE /users/{id}/workouts/{workout_id}", handlers.HandleDeleteWorkout)
+	mux.HandleFunc("DELETE /exercises/{exercise_id}", handlers.HandleDeleteExercise)
 	return mux
 }
 

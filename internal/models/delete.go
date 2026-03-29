@@ -1,6 +1,9 @@
 package models
 
-import "github.com/gattini0928/Learning-Go-Workout-Builder/internal/db"
+import (
+	"github.com/gattini0928/Learning-Go-Workout-Builder/internal/db"
+	"fmt"
+)
 
 func DeleteWorkout(workout_id int, user_id int) (int64, error) {
 	conn, err := db.OpenConnection()
@@ -36,18 +39,35 @@ func DeleteWorkout(workout_id int, user_id int) (int64, error) {
 	return res.RowsAffected()
 }
 
-func DeleteExercice(exercise_id int) (int64, error){
+
+func DeleteExercice(exercise_id int) (int64, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
 		return 0, err
 	}
-
 	defer conn.Close()
+
+	var exists bool
+
+	err = conn.QueryRow(`
+		SELECT EXISTS (
+			SELECT 1 FROM workout_exercises WHERE exercise_id = $1
+		)
+	`, exercise_id).Scan(&exists)
+
+	if err != nil {
+		return 0, err
+	}
+
+	if exists {
+		return 0, fmt.Errorf("exercício está em uso em um ou mais treinos")
+	}
 
 	res, err := conn.Exec(`DELETE FROM exercises WHERE id = $1`, exercise_id)
 	if err != nil {
-		return 0, nil
+		return 0, err
 	}
+
 	return res.RowsAffected()
 }
 

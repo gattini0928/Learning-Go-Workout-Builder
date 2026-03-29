@@ -11,7 +11,6 @@ import (
 
 func HandleDeleteWorkout(w http.ResponseWriter, r *http.Request) {
 	var response Message
-	var err error
 
 	userIdStr := r.PathValue("id")
 	if userIdStr == "" {
